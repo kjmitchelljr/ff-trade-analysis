@@ -184,11 +184,11 @@
     <main class="container mx-auto p-4 md:p-8">
       <section id="kpis" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div class="stat-card">
-          <div class="stat-number">16</div>
+          <div class="stat-number" id="totalTrades">0</div>
           <div class="stat-label">Total Trades Processed</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">48</div>
+          <div class="stat-number" id="totalPlayers">0</div>
           <div class="stat-label">Total Players Exchanged</div>
         </div>
         <div class="stat-card">
@@ -773,6 +773,38 @@
 
     <script>
       window.addEventListener("DOMContentLoaded", () => {
+        // Calculate total trades and players from the table
+        const tradeRows = document.querySelectorAll(
+          ".trade-table tbody tr:not(.bg-red-50)"
+        );
+        const totalTrades = tradeRows.length;
+
+        let totalPlayers = 0;
+        tradeRows.forEach((row) => {
+          const tradedCells = row.querySelectorAll('td[data-label="Traded"]');
+          tradedCells.forEach((cell) => {
+            const text = cell.textContent.trim();
+            if (text) {
+              // Count players by splitting on commas
+              const players = text.split(",").filter((p) => {
+                const trimmed = p.trim();
+                // Filter out badge text like "VETOED" or "3-WAY TRADE" or "+ $37 FAB"
+                return (
+                  trimmed &&
+                  !trimmed.includes("VETOED") &&
+                  !trimmed.includes("3-WAY") &&
+                  !trimmed.startsWith("+")
+                );
+              });
+              totalPlayers += players.length;
+            }
+          });
+        });
+
+        // Update the KPI displays
+        document.getElementById("totalTrades").textContent = totalTrades;
+        document.getElementById("totalPlayers").textContent = totalPlayers;
+
         const palette = {
           blue1: "#00449E",
           blue2: "#1B63C4",
@@ -875,12 +907,11 @@
               "..",
               "For Emma",
               "Walk Em Down",
-              "Strictly Business",
             ],
             datasets: [
               {
                 label: "Number of Trades Involved In",
-                data: [5, 4, 4, 3, 3, 3, 2, 2, 1, 1, 1, 1, 1],
+                data: [5, 4, 4, 3, 3, 3, 2, 2, 1, 1, 1, 1],
                 backgroundColor: [
                   "#00449E", // Winter Soldier
                   "#1B63C4", // F.N. GOODELL
@@ -894,7 +925,6 @@
                   "#00BCD4", // ..
                   "#8BC34A", // For Emma
                   "#FF9800", // Walk Em Down
-                  "#607D8B", // Strictly Business
                 ],
               },
             ],
