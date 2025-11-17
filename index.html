@@ -763,6 +763,17 @@
           </div>
         </div>
       </section>
+
+      <section class="chart-card mb-8">
+        <h3 class="chart-title">Player Position Breakdown</h3>
+        <p class="chart-context">
+          Distribution of all traded players by position, showing which
+          positions are most frequently involved in trades.
+        </p>
+        <div class="chart-container" style="max-width: 400px">
+          <canvas id="positionChart"></canvas>
+        </div>
+      </section>
     </main>
 
     <footer class="text-center p-4 mt-8">
@@ -1023,6 +1034,92 @@
               ...tooltipTitleCallback.plugins,
               legend: {
                 display: false,
+              },
+            },
+          },
+        });
+
+        // Calculate position breakdown
+        const positionCounts = {
+          RB: 0,
+          WR: 0,
+          QB: 0,
+          TE: 0,
+          K: 0,
+        };
+
+        tradeRows.forEach((row) => {
+          const tradedCells = row.querySelectorAll('td[data-label="Traded"]');
+          tradedCells.forEach((cell) => {
+            const text = cell.textContent.trim();
+            if (text) {
+              // Match positions in parentheses like (RB), (WR), etc.
+              const positionMatches = text.match(/\((RB|WR|QB|TE|K)\)/g);
+              if (positionMatches) {
+                positionMatches.forEach((match) => {
+                  const position = match.replace(/[()]/g, "");
+                  if (positionCounts[position] !== undefined) {
+                    positionCounts[position]++;
+                  }
+                });
+              }
+            }
+          });
+        });
+
+        // Prepare data for position chart
+        const positionLabels = Object.keys(positionCounts);
+        const positionData = Object.values(positionCounts);
+
+        const positionCtx = document
+          .getElementById("positionChart")
+          .getContext("2d");
+        new Chart(positionCtx, {
+          type: "doughnut",
+          data: {
+            labels: positionLabels,
+            datasets: [
+              {
+                label: "Players Traded",
+                data: positionData,
+                backgroundColor: [
+                  palette.blue1, // RB
+                  palette.blue2, // WR
+                  palette.yellow, // QB
+                  palette.orange, // TE
+                  palette.gray, // K
+                ],
+                borderColor: "#ffffff",
+                borderWidth: 2,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: {
+                  padding: 15,
+                  font: {
+                    size: 12,
+                  },
+                },
+              },
+              tooltip: {
+                callbacks: {
+                  label: function (context) {
+                    const label = context.label || "";
+                    const value = context.parsed || 0;
+                    const total = context.dataset.data.reduce(
+                      (a, b) => a + b,
+                      0
+                    );
+                    const percentage = ((value / total) * 100).toFixed(1);
+                    return `${label}: ${value} players (${percentage}%)`;
+                  },
+                },
               },
             },
           },
