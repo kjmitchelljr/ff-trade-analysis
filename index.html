@@ -192,15 +192,17 @@
           <div class="stat-label">Total Players Exchanged</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">October</div>
-          <div class="stat-label">Busiest Trade Month (9 Trades)</div>
+          <div class="stat-number" id="busiestMonth">-</div>
+          <div class="stat-label" id="busiestMonthLabel">
+            Busiest Trade Month
+          </div>
         </div>
       </section>
 
       <section id="trade-log" class="chart-card mb-8">
         <h3 class="chart-title">Complete Processed Trade Log</h3>
-        <p class="chart-context">
-          A detailed list of all 16 processed trades for reference.
+        <p class="chart-context" id="tradeLogDescription">
+          A detailed list of all processed trades for reference.
         </p>
         <div class="overflow-x-auto">
           <table class="trade-table min-w-full divide-y divide-gray-200">
@@ -801,9 +803,95 @@
           });
         });
 
+        // Calculate busiest month
+        const monthCounts = {};
+        const monthNames = {
+          Sep: "September",
+          Oct: "October",
+          Nov: "November",
+        };
+
+        tradeRows.forEach((row) => {
+          const dateCell = row.querySelector('td[data-label="Date"]');
+          if (dateCell) {
+            const dateText = dateCell.textContent.trim();
+            const month = dateText.split(" ")[0]; // Get 'Sep', 'Oct', or 'Nov'
+            monthCounts[month] = (monthCounts[month] || 0) + 1;
+          }
+        });
+
+        // Find the busiest month
+        let busiestMonth = "";
+        let maxTrades = 0;
+        for (const [month, count] of Object.entries(monthCounts)) {
+          if (count > maxTrades) {
+            maxTrades = count;
+            busiestMonth = month;
+          }
+        }
+
         // Update the KPI displays
         document.getElementById("totalTrades").textContent = totalTrades;
         document.getElementById("totalPlayers").textContent = totalPlayers;
+        document.getElementById("busiestMonth").textContent =
+          monthNames[busiestMonth] || "-";
+        document.getElementById(
+          "busiestMonthLabel"
+        ).textContent = `Busiest Trade Month (${maxTrades} Trade${
+          maxTrades !== 1 ? "s" : ""
+        })`;
+
+        // Update trade log description
+        document.getElementById(
+          "tradeLogDescription"
+        ).textContent = `A detailed list of all ${totalTrades} processed trade${
+          totalTrades !== 1 ? "s" : ""
+        } for reference.`;
+
+        // Calculate team trade activity from table
+        const teamTradeCount = {};
+        tradeRows.forEach((row) => {
+          const team1Cell = row.querySelector('td[data-label="Team 1"]');
+          const team2Cell = row.querySelector('td[data-label="Team 2"]');
+
+          if (team1Cell) {
+            const team1 = team1Cell.textContent.trim();
+            teamTradeCount[team1] = (teamTradeCount[team1] || 0) + 1;
+          }
+
+          if (team2Cell) {
+            const team2 = team2Cell.textContent.trim();
+            teamTradeCount[team2] = (teamTradeCount[team2] || 0) + 1;
+          }
+        });
+
+        // Sort teams by trade count (descending)
+        const sortedTeams = Object.entries(teamTradeCount)
+          .sort((a, b) => b[1] - a[1])
+          .filter(([team, count]) => count > 0); // Only include teams with trades
+
+        const teamLabels = sortedTeams.map(([team]) => team);
+        const teamCounts = sortedTeams.map(([, count]) => count);
+
+        // Generate colors for teams
+        const teamColors = [
+          "#00449E",
+          "#1B63C4",
+          "#FFC100",
+          "#FF8F00",
+          "#FF5722",
+          "#757575",
+          "#4CAF50",
+          "#9C27B0",
+          "#E91E63",
+          "#00BCD4",
+          "#8BC34A",
+          "#FF9800",
+          "#607D8B",
+          "#795548",
+          "#9E9E9E",
+          "#673AB7",
+        ];
 
         const palette = {
           blue1: "#00449E",
@@ -856,17 +944,26 @@
           return lines;
         }
 
+        // Prepare data for trades per month chart
+        const monthLabels = Object.keys(monthNames).map(
+          (abbr) => monthNames[abbr]
+        );
+        const monthData = monthLabels.map((fullName, idx) => {
+          const abbr = Object.keys(monthNames)[idx];
+          return monthCounts[abbr] || 0;
+        });
+
         const tradesPerMonthCtx = document
           .getElementById("tradesPerMonthChart")
           .getContext("2d");
         new Chart(tradesPerMonthCtx, {
           type: "bar",
           data: {
-            labels: ["September", "October", "November"],
+            labels: monthLabels,
             datasets: [
               {
                 label: "Trades per Month",
-                data: [5, 9, 2],
+                data: monthData,
                 backgroundColor: [palette.blue2, palette.blue1, palette.yellow],
                 borderColor: "#ffffff",
                 borderWidth: 1,
@@ -894,38 +991,12 @@
         new Chart(activeTeamsCtx, {
           type: "bar",
           data: {
-            labels: [
-              "Winter Soldier",
-              "F.N. GOODELL",
-              "Romans 8:31",
-              "More To Life Than Fantasy",
-              "One Man Army",
-              "The Runners",
-              "High Noon FC",
-              "Nabers Thinking Im Selling Dope",
-              "Chase A Check, Never Chase A...",
-              "..",
-              "For Emma",
-              "Walk Em Down",
-            ],
+            labels: teamLabels,
             datasets: [
               {
                 label: "Number of Trades Involved In",
-                data: [5, 4, 4, 3, 3, 3, 2, 2, 1, 1, 1, 1],
-                backgroundColor: [
-                  "#00449E", // Winter Soldier
-                  "#1B63C4", // F.N. GOODELL
-                  "#FFC100", // Romans 8:31
-                  "#FF8F00", // More To Life Than Fantasy
-                  "#FF5722", // One Man Army
-                  "#757575", // The Runners
-                  "#4CAF50", // High Noon FC
-                  "#9C27B0", // Nabers Thinking Im Selling Dope
-                  "#E91E63", // Chase A Check...
-                  "#00BCD4", // ..
-                  "#8BC34A", // For Emma
-                  "#FF9800", // Walk Em Down
-                ],
+                data: teamCounts,
+                backgroundColor: teamColors.slice(0, teamLabels.length),
               },
             ],
           },
