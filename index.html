@@ -1124,8 +1124,7 @@
                 label: "Trades per Month",
                 data: monthData,
                 backgroundColor: [palette.blue2, palette.blue1, palette.yellow],
-                borderColor: "#ffffff",
-                borderWidth: 1,
+                borderWidth: 0,
               },
             ],
           },
@@ -1137,10 +1136,29 @@
                 beginAtZero: true,
                 ticks: {
                   stepSize: 1,
+                  color: "#ffffff",
+                },
+                grid: {
+                  color: "rgba(255, 255, 255, 0.1)",
+                },
+              },
+              x: {
+                ticks: {
+                  color: "#ffffff",
+                },
+                grid: {
+                  color: "rgba(255, 255, 255, 0.1)",
                 },
               },
             },
-            ...tooltipTitleCallback,
+            plugins: {
+              legend: {
+                labels: {
+                  color: "#ffffff",
+                },
+              },
+              ...tooltipTitleCallback.plugins,
+            },
           },
         });
 
@@ -1156,6 +1174,7 @@
                 label: "Number of Trades Involved In",
                 data: teamCounts,
                 backgroundColor: teamColors.slice(0, teamLabels.length),
+                borderWidth: 0,
               },
             ],
           },
@@ -1167,6 +1186,10 @@
               x: {
                 ticks: {
                   stepSize: 1,
+                  color: "#ffffff",
+                },
+                grid: {
+                  color: "rgba(255, 255, 255, 0.1)",
                 },
               },
               y: {
@@ -1175,6 +1198,10 @@
                   font: {
                     size: 9,
                   },
+                  color: "#ffffff",
+                },
+                grid: {
+                  color: "rgba(255, 255, 255, 0.1)",
                 },
               },
             },
@@ -1209,8 +1236,7 @@
                   "#22c55e", // TE - Green
                   "#a855f7", // K - Purple
                 ],
-                borderColor: "#ffffff",
-                borderWidth: 2,
+                borderWidth: 0,
               },
             ],
           },
@@ -1225,6 +1251,7 @@
                   font: {
                     size: 12,
                   },
+                  color: "#ffffff",
                 },
               },
               tooltip: {
