@@ -218,14 +218,6 @@
           background-color: #7f1d1d;
           border-color: #991b1b;
         }
-        .trade-table tbody tr.bg-purple-50 {
-          background-color: #581c87;
-          border-left: 4px solid #a855f7;
-        }
-        .trade-table tbody tr.bg-green-50 {
-          background-color: #14532d;
-          border-color: #22c55e;
-        }
         .trade-table tbody td {
           display: block;
           text-align: left;
@@ -315,6 +307,18 @@
                 >
                   Traded
                 </th>
+                <th
+                  scope="col"
+                  class="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                >
+                  Team 3
+                </th>
+                <th
+                  scope="col"
+                  class="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                >
+                  Traded
+                </th>
               </tr>
             </thead>
             <tbody class="bg-gray-900 divide-y divide-gray-700">
@@ -349,6 +353,14 @@
                 >
                   Terry McLaurin (WR), Isiah Pacheco (RB)
                 </td>
+                <td
+                  data-label="Team 3"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium"
+                ></td>
+                <td
+                  data-label="Traded"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm"
+                ></td>
               </tr>
               <tr>
                 <td
@@ -478,39 +490,40 @@
                   Stefon Diggs (WR), Jake Ferguson (TE), Chuba Hubbard (RB)
                 </td>
               </tr>
-              <tr class="bg-green-50 border-l-4 border-green-500">
+              <tr>
                 <td
                   data-label="Date"
-                  class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-green-300"
+                  class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm"
                 >
                   Oct 8
                 </td>
                 <td
                   data-label="Team 1"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-green-300"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium"
                 >
                   More To Life..
                 </td>
                 <td
                   data-label="Traded"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-green-300"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm"
                 >
                   Tee Higgins (WR)
                   <span
-                    class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-900 text-green-200"
+                    class="ml-2 inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-gradient-to-r from-green-900 to-green-800 text-green-100 border border-green-600 shadow-sm"
+                    title="Trade occurred during Joe Flacco's signing with the Bengals"
                   >
-                    🏈 JOE FLACCO TO BENGALS
+                    🏈 Joe Flacco → Bengals
                   </span>
                 </td>
                 <td
                   data-label="Team 2"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-green-300"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium"
                 >
                   Walk Em Down
                 </td>
                 <td
                   data-label="Traded"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-green-300"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm"
                 >
                   Tony Pollard (RB)
                 </td>
@@ -680,106 +693,64 @@
                   Jaylen Warren (RB)
                 </td>
               </tr>
-              <tr class="bg-purple-50 border-l-4 border-purple-500">
+              <tr>
                 <td
                   data-label="Date"
-                  class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-purple-300"
+                  class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm"
                 >
                   Oct 31
                 </td>
                 <td
                   data-label="Team 1"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-purple-300"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium"
                 >
                   Romans 8:31
                 </td>
                 <td
                   data-label="Traded"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-purple-300"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm"
                 >
-                  Tyler Allgeier (RB), Drake London (WR)
+                  <span title="Went to One Man Army"
+                    >Tyler Allgeier (RB), Drake London (WR)</span
+                  >
+                  <div class="text-xs text-gray-500 mt-1">→ One Man Army</div>
                 </td>
                 <td
                   data-label="Team 2"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-purple-300"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium"
                 >
                   One Man Army
                 </td>
                 <td
                   data-label="Traded"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-purple-300"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm"
                 >
-                  Chris Olave (WR)
+                  <span title="Went to Romans 8:31">Chris Olave (WR)</span>,
+                  <span title="Went to F.N. GOODELL"
+                    >Tyrone Tracy Jr. (RB)</span
+                  >
                   <span
-                    class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-900 text-purple-200"
+                    class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-900 text-blue-200"
+                    title="$37 FAB went to Romans 8:31"
                   >
                     + $37 FAB
                   </span>
-                </td>
-              </tr>
-              <tr class="bg-purple-50 border-l-4 border-purple-500">
-                <td
-                  data-label="Date"
-                  class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-purple-300"
-                >
-                  Oct 31
+                  <div class="text-xs text-gray-500 mt-1">
+                    → Romans 8:31 (Olave, FAB), F.N. GOODELL (Tracy)
+                  </div>
                 </td>
                 <td
-                  data-label="Team 1"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-purple-300"
+                  data-label="Team 3"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium"
                 >
                   F.N. GOODELL
                 </td>
                 <td
                   data-label="Traded"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-purple-300"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm"
                 >
-                  Deebo Samuel (WR)
-                </td>
-                <td
-                  data-label="Team 2"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-purple-300"
-                >
-                  Romans 8:31
-                </td>
-                <td
-                  data-label="Traded"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-purple-300"
-                ></td>
-              </tr>
-              <tr class="bg-purple-50 border-l-4 border-purple-500">
-                <td
-                  data-label="Date"
-                  class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-purple-300"
-                >
-                  Nov 1
-                </td>
-                <td
-                  data-label="Team 1"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-purple-300"
-                >
-                  F.N. GOODELL
-                </td>
-                <td
-                  data-label="Traded"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-purple-300"
-                ></td>
-                <td
-                  data-label="Team 2"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-purple-300"
-                >
-                  One Man Army
-                </td>
-                <td
-                  data-label="Traded"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-purple-300"
-                >
-                  Tyrone Tracy Jr. (RB)
-                  <span
-                    class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-900 text-purple-200"
-                  >
-                    3-WAY TRADE
-                  </span>
+                  <span title="Went to Romans 8:31">Deebo Samuel (WR)</span>
+                  <div class="text-xs text-gray-500 mt-1">→ Romans 8:31</div>
                 </td>
               </tr>
               <tr>
@@ -868,6 +839,29 @@
 
     <script>
       window.addEventListener("DOMContentLoaded", () => {
+        // Add Team 3 cells to all rows that don't have them
+        const tableRows = document.querySelectorAll(".trade-table tbody tr");
+        tableRows.forEach((row) => {
+          const cells = row.querySelectorAll("td");
+          // Check if this row already has Team 3 cells (should have 7 cells: Date, Team1, Traded, Team2, Traded, Team3, Traded)
+          // For now, if row has 5 cells (Date, Team1, Traded, Team2, Traded), add Team 3
+          if (cells.length === 5) {
+            // Add empty Team 3 cell
+            const team3Cell = document.createElement("td");
+            team3Cell.setAttribute("data-label", "Team 3");
+            team3Cell.className =
+              "px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium";
+            row.appendChild(team3Cell);
+
+            // Add empty Traded cell for Team 3
+            const traded3Cell = document.createElement("td");
+            traded3Cell.setAttribute("data-label", "Traded");
+            traded3Cell.className =
+              "px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm";
+            row.appendChild(traded3Cell);
+          }
+        });
+
         // Calculate position breakdown BEFORE color coding
         const positionCounts = {
           RB: 0,
@@ -880,6 +874,22 @@
         const tradeRows = document.querySelectorAll(
           ".trade-table tbody tr:not(.bg-red-50)"
         );
+
+        // Calculate total players BEFORE color coding
+        let totalPlayers = 0;
+        tradeRows.forEach((row) => {
+          const tradedCells = row.querySelectorAll('td[data-label="Traded"]');
+          tradedCells.forEach((cell) => {
+            const text = cell.textContent.trim();
+            if (text) {
+              // Match positions in parentheses like (RB), (WR), etc.
+              const positionMatches = text.match(/\((RB|WR|QB|TE|K)\)/g);
+              if (positionMatches) {
+                totalPlayers += positionMatches.length;
+              }
+            }
+          });
+        });
 
         tradeRows.forEach((row) => {
           const tradedCells = row.querySelectorAll('td[data-label="Traded"]');
@@ -937,30 +947,8 @@
         // Apply color coding after counting positions
         colorCodePositions();
 
-        // Calculate total trades and players from the table
+        // Calculate total trades from the table
         const totalTrades = tradeRows.length;
-
-        let totalPlayers = 0;
-        tradeRows.forEach((row) => {
-          const tradedCells = row.querySelectorAll('td[data-label="Traded"]');
-          tradedCells.forEach((cell) => {
-            const text = cell.textContent.trim();
-            if (text) {
-              // Count players by splitting on commas
-              const players = text.split(",").filter((p) => {
-                const trimmed = p.trim();
-                // Filter out badge text like "VETOED" or "3-WAY TRADE" or "+ $37 FAB"
-                return (
-                  trimmed &&
-                  !trimmed.includes("VETOED") &&
-                  !trimmed.includes("3-WAY") &&
-                  !trimmed.startsWith("+")
-                );
-              });
-              totalPlayers += players.length;
-            }
-          });
-        });
 
         // Calculate busiest month
         const monthCounts = {};
