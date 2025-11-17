@@ -13,8 +13,8 @@
     <style>
       body {
         font-family: "Inter", sans-serif;
-        background-color: #f5f5f5;
-        color: #212121;
+        background-color: #111827;
+        color: #f3f4f6;
       }
       .chart-container {
         position: relative;
@@ -40,12 +40,13 @@
         }
       }
       .stat-card {
-        background-color: #ffffff;
+        background-color: #1f2937;
         border-radius: 0.5rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3),
+          0 2px 4px -1px rgba(0, 0, 0, 0.2);
         padding: 1rem;
         text-align: center;
+        border: 1px solid #374151;
       }
       @media (min-width: 768px) {
         .stat-card {
@@ -55,7 +56,7 @@
       .stat-number {
         font-size: 1.5rem;
         font-weight: 700;
-        color: #1b63c4;
+        color: #60a5fa;
       }
       @media (min-width: 640px) {
         .stat-number {
@@ -70,7 +71,7 @@
       .stat-label {
         font-size: 0.75rem;
         font-weight: 600;
-        color: #757575;
+        color: #9ca3af;
         margin-top: 0.375rem;
       }
       @media (min-width: 768px) {
@@ -79,16 +80,18 @@
         }
       }
       .chart-card {
-        background-color: #ffffff;
+        background-color: #1f2937;
         border-radius: 0.5rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3),
+          0 2px 4px -1px rgba(0, 0, 0, 0.2);
         padding: 1.5rem;
+        border: 1px solid #374151;
       }
       .chart-title {
         font-size: 1.125rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
+        color: #f3f4f6;
       }
       @media (min-width: 768px) {
         .chart-title {
@@ -97,7 +100,7 @@
       }
       .chart-context {
         font-size: 0.8125rem;
-        color: #757575;
+        color: #9ca3af;
         margin-bottom: 1rem;
         line-height: 1.4;
       }
@@ -106,10 +109,92 @@
           font-size: 0.875rem;
         }
       }
+      /* Position color badges */
+      .position-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.0625rem 0.25rem;
+        border-radius: 0.25rem;
+        font-size: 0.5rem;
+        font-weight: 700;
+        margin-left: 0.25rem;
+        text-transform: uppercase;
+        background-color: transparent;
+        opacity: 0.7;
+      }
+      /* Player name styling with position colors - pill style */
+      .player-rb,
+      .player-wr,
+      .player-qb,
+      .player-te,
+      .player-k {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.5rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        margin: 0.125rem;
+        white-space: nowrap;
+      }
+      .player-rb {
+        background-color: #fee2e2;
+        color: #991b1b;
+      }
+      .player-wr {
+        background-color: #dbeafe;
+        color: #1e40af;
+      }
+      .player-qb {
+        background-color: #f3f4f6;
+        color: #374151;
+      }
+      .player-te {
+        background-color: #dcfce7;
+        color: #166534;
+      }
+      .player-k {
+        background-color: #f3e8ff;
+        color: #6b21a8;
+      }
+      .position-rb {
+        background-color: #ef4444;
+        color: #ffffff;
+      }
+      .position-wr {
+        background-color: #3b82f6;
+        color: #ffffff;
+      }
+      .position-qb {
+        background-color: #9ca3af;
+        color: #ffffff;
+      }
+      .position-te {
+        background-color: #22c55e;
+        color: #ffffff;
+      }
+      .position-k {
+        background-color: #a855f7;
+        color: #ffffff;
+      }
       /* Desktop table styles - bold traded players */
       @media (min-width: 768px) {
         .trade-table tbody td[data-label="Traded"] {
           font-weight: 600;
+        }
+        /* Highlighted rows for desktop */
+        .trade-table tbody tr.bg-red-50 {
+          background-color: rgba(127, 29, 29, 0.3);
+          border-left: 4px solid #ef4444;
+        }
+        .trade-table tbody tr.bg-purple-50 {
+          background-color: rgba(88, 28, 135, 0.3);
+          border-left: 4px solid #a855f7;
+        }
+        .trade-table tbody tr.bg-green-50 {
+          background-color: rgba(20, 83, 45, 0.3);
+          border-left: 4px solid #22c55e;
         }
       }
       /* Mobile table styles */
@@ -117,24 +202,29 @@
         .trade-table thead {
           display: none;
         }
+        .trade-table tbody {
+          background-color: #111827 !important;
+          display: block;
+        }
         .trade-table tbody tr {
           display: block;
           margin-bottom: 1rem;
-          border: 1px solid #e5e7eb;
+          border: 1px solid #374151;
           border-radius: 0.5rem;
           padding: 0.75rem;
+          background-color: #1f2937;
         }
         .trade-table tbody tr.bg-red-50 {
-          background-color: #fef2f2;
-          border-color: #fca5a5;
+          background-color: #7f1d1d;
+          border-color: #991b1b;
         }
         .trade-table tbody tr.bg-purple-50 {
-          background-color: #faf5ff;
+          background-color: #581c87;
           border-left: 4px solid #a855f7;
         }
         .trade-table tbody tr.bg-green-50 {
-          background-color: #f0fdf4;
-          border-color: #86efac;
+          background-color: #14532d;
+          border-color: #22c55e;
         }
         .trade-table tbody td {
           display: block;
@@ -147,42 +237,21 @@
           font-weight: 600;
           font-size: 0.625rem;
           text-transform: uppercase;
-          color: #6b7280;
+          color: #9ca3af;
           display: block;
           margin-bottom: 0.125rem;
-        }
-        /* Highlight traded players on mobile */
-        .trade-table tbody td[data-label="Traded"] {
-          background-color: #eff6ff;
-          border-left: 3px solid #3b82f6;
-          padding: 0.5rem !important;
-          margin: 0.25rem 0;
-          border-radius: 0.375rem;
-          font-weight: 500;
-        }
-        .trade-table tbody tr.bg-red-50 td[data-label="Traded"] {
-          background-color: #fee2e2;
-          border-left-color: #ef4444;
-        }
-        .trade-table tbody tr.bg-purple-50 td[data-label="Traded"] {
-          background-color: #f3e8ff;
-          border-left-color: #a855f7;
-        }
-        .trade-table tbody tr.bg-green-50 td[data-label="Traded"] {
-          background-color: #dcfce7;
-          border-left-color: #22c55e;
         }
       }
     </style>
   </head>
   <body>
-    <header class="bg-white shadow-md">
+    <header class="bg-gray-800 shadow-md border-b border-gray-700">
       <div class="container mx-auto px-4 py-4 md:py-6">
-        <h1 class="text-2xl md:text-3xl font-bold text-center text-[#00449E]">
+        <h1 class="text-2xl md:text-3xl font-bold text-center text-[#60a5fa]">
           Putin & The Runner Ups
         </h1>
         <h2
-          class="text-lg md:text-xl font-semibold text-center text-[#757575] mt-1"
+          class="text-lg md:text-xl font-semibold text-center text-gray-400 mt-1"
         >
           Trade Activity Analysis (Sep - Nov 2025)
         </h2>
@@ -213,42 +282,42 @@
           A detailed list of all processed trades for reference.
         </p>
         <div class="overflow-x-auto">
-          <table class="trade-table min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
+          <table class="trade-table min-w-full divide-y divide-gray-700">
+            <thead class="bg-gray-800">
               <tr>
                 <th
                   scope="col"
-                  class="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  class="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
                 >
                   Date
                 </th>
                 <th
                   scope="col"
-                  class="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  class="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
                 >
                   Team 1
                 </th>
                 <th
                   scope="col"
-                  class="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  class="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
                 >
                   Traded
                 </th>
                 <th
                   scope="col"
-                  class="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  class="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
                 >
                   Team 2
                 </th>
                 <th
                   scope="col"
-                  class="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  class="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
                 >
                   Traded
                 </th>
               </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
+            <tbody class="bg-gray-900 divide-y divide-gray-700">
               <tr>
                 <td
                   data-label="Date"
@@ -266,7 +335,7 @@
                   data-label="Traded"
                   class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm"
                 >
-                  Isiah Pacheco (WR), Jordan Mason (RB)
+                  Isiah Pacheco (RB), Jordan Mason (RB)
                 </td>
                 <td
                   data-label="Team 2"
@@ -412,36 +481,36 @@
               <tr class="bg-green-50 border-l-4 border-green-500">
                 <td
                   data-label="Date"
-                  class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-green-900"
+                  class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-green-300"
                 >
                   Oct 8
                 </td>
                 <td
                   data-label="Team 1"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-green-900"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-green-300"
                 >
                   More To Life..
                 </td>
                 <td
                   data-label="Traded"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-green-900"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-green-300"
                 >
                   Tee Higgins (WR)
                   <span
-                    class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-200 text-green-900"
+                    class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-900 text-green-200"
                   >
                     🏈 JOE FLACCO TO BENGALS
                   </span>
                 </td>
                 <td
                   data-label="Team 2"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-green-900"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-green-300"
                 >
                   Walk Em Down
                 </td>
                 <td
                   data-label="Traded"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-green-900"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-green-300"
                 >
                   Tony Pollard (RB)
                 </td>
@@ -513,35 +582,35 @@
               <tr class="bg-red-50">
                 <td
                   data-label="Date"
-                  class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-red-600"
+                  class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-red-400"
                 >
                   Oct 28
                 </td>
                 <td
                   data-label="Team 1"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-red-600"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-red-400"
                 >
                   The Runners
                 </td>
                 <td
                   data-label="Traded"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-red-600"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-red-400"
                 >
                   RJ Harvey (RB)
                 </td>
                 <td
                   data-label="Team 2"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-red-600"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-red-400"
                 >
                   High Noon FC
                 </td>
                 <td
                   data-label="Traded"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-red-600"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-red-400"
                 >
                   Khalil Shakir (WR)
                   <span
-                    class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800"
+                    class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-900 text-red-200"
                   >
                     VETOED
                   </span>
@@ -614,35 +683,35 @@
               <tr class="bg-purple-50 border-l-4 border-purple-500">
                 <td
                   data-label="Date"
-                  class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-purple-900"
+                  class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-purple-300"
                 >
                   Oct 31
                 </td>
                 <td
                   data-label="Team 1"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-purple-900"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-purple-300"
                 >
                   Romans 8:31
                 </td>
                 <td
                   data-label="Traded"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-purple-900"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-purple-300"
                 >
                   Tyler Allgeier (RB), Drake London (WR)
                 </td>
                 <td
                   data-label="Team 2"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-purple-900"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-purple-300"
                 >
                   One Man Army
                 </td>
                 <td
                   data-label="Traded"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-purple-900"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-purple-300"
                 >
                   Chris Olave (WR)
                   <span
-                    class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-200 text-purple-900"
+                    class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-900 text-purple-200"
                   >
                     + $37 FAB
                   </span>
@@ -651,63 +720,63 @@
               <tr class="bg-purple-50 border-l-4 border-purple-500">
                 <td
                   data-label="Date"
-                  class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-purple-900"
+                  class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-purple-300"
                 >
                   Oct 31
                 </td>
                 <td
                   data-label="Team 1"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-purple-900"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-purple-300"
                 >
                   F.N. GOODELL
                 </td>
                 <td
                   data-label="Traded"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-purple-900"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-purple-300"
                 >
                   Deebo Samuel (WR)
                 </td>
                 <td
                   data-label="Team 2"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-purple-900"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-purple-300"
                 >
                   Romans 8:31
                 </td>
                 <td
                   data-label="Traded"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-purple-900"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-purple-300"
                 ></td>
               </tr>
               <tr class="bg-purple-50 border-l-4 border-purple-500">
                 <td
                   data-label="Date"
-                  class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-purple-900"
+                  class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-purple-300"
                 >
                   Nov 1
                 </td>
                 <td
                   data-label="Team 1"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-purple-900"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-purple-300"
                 >
                   F.N. GOODELL
                 </td>
                 <td
                   data-label="Traded"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-purple-900"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-purple-300"
                 ></td>
                 <td
                   data-label="Team 2"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-purple-900"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm font-medium text-purple-300"
                 >
                   One Man Army
                 </td>
                 <td
                   data-label="Traded"
-                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-purple-900"
+                  class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm text-purple-300"
                 >
                   Tyrone Tracy Jr. (RB)
                   <span
-                    class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-200 text-purple-900"
+                    class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-900 text-purple-200"
                   >
                     3-WAY TRADE
                   </span>
@@ -789,7 +858,7 @@
       </section>
     </main>
 
-    <footer class="text-center p-4 mt-8">
+    <footer class="text-center p-4 mt-8 border-t border-gray-800">
       <p class="text-xs text-gray-500">
         Infographic generated based on trade log data. This is a single-page
         application using Chart.js and Tailwind CSS. No SVG or Mermaid JS
@@ -799,10 +868,76 @@
 
     <script>
       window.addEventListener("DOMContentLoaded", () => {
-        // Calculate total trades and players from the table
+        // Calculate position breakdown BEFORE color coding
+        const positionCounts = {
+          RB: 0,
+          WR: 0,
+          QB: 0,
+          TE: 0,
+          K: 0,
+        };
+
         const tradeRows = document.querySelectorAll(
           ".trade-table tbody tr:not(.bg-red-50)"
         );
+
+        tradeRows.forEach((row) => {
+          const tradedCells = row.querySelectorAll('td[data-label="Traded"]');
+          tradedCells.forEach((cell) => {
+            const text = cell.textContent.trim();
+            if (text) {
+              // Match positions in parentheses like (RB), (WR), etc.
+              const positionMatches = text.match(/\((RB|WR|QB|TE|K)\)/g);
+              if (positionMatches) {
+                positionMatches.forEach((match) => {
+                  const position = match.replace(/[()]/g, "");
+                  if (positionCounts[position] !== undefined) {
+                    positionCounts[position]++;
+                  }
+                });
+              }
+            }
+          });
+        });
+
+        // Function to add color-coded position badges
+        function colorCodePositions() {
+          const allCells = document.querySelectorAll(
+            '.trade-table tbody td[data-label="Traded"]'
+          );
+          allCells.forEach((cell) => {
+            let html = cell.innerHTML;
+
+            // Replace position tags with color-coded player names and badges
+            html = html.replace(
+              /([^,<>]+)\s*\(RB\)/g,
+              '<span class="player-rb">$1 <span class="position-badge position-rb">RB</span></span>'
+            );
+            html = html.replace(
+              /([^,<>]+)\s*\(WR\)/g,
+              '<span class="player-wr">$1 <span class="position-badge position-wr">WR</span></span>'
+            );
+            html = html.replace(
+              /([^,<>]+)\s*\(QB\)/g,
+              '<span class="player-qb">$1 <span class="position-badge position-qb">QB</span></span>'
+            );
+            html = html.replace(
+              /([^,<>]+)\s*\(TE\)/g,
+              '<span class="player-te">$1 <span class="position-badge position-te">TE</span></span>'
+            );
+            html = html.replace(
+              /([^,<>]+)\s*\(K\)/g,
+              '<span class="player-k">$1 <span class="position-badge position-k">K</span></span>'
+            );
+
+            cell.innerHTML = html;
+          });
+        }
+
+        // Apply color coding after counting positions
+        colorCodePositions();
+
+        // Calculate total trades and players from the table
         const totalTrades = tradeRows.length;
 
         let totalPlayers = 0;
@@ -1052,35 +1187,7 @@
           },
         });
 
-        // Calculate position breakdown
-        const positionCounts = {
-          RB: 0,
-          WR: 0,
-          QB: 0,
-          TE: 0,
-          K: 0,
-        };
-
-        tradeRows.forEach((row) => {
-          const tradedCells = row.querySelectorAll('td[data-label="Traded"]');
-          tradedCells.forEach((cell) => {
-            const text = cell.textContent.trim();
-            if (text) {
-              // Match positions in parentheses like (RB), (WR), etc.
-              const positionMatches = text.match(/\((RB|WR|QB|TE|K)\)/g);
-              if (positionMatches) {
-                positionMatches.forEach((match) => {
-                  const position = match.replace(/[()]/g, "");
-                  if (positionCounts[position] !== undefined) {
-                    positionCounts[position]++;
-                  }
-                });
-              }
-            }
-          });
-        });
-
-        // Prepare data for position chart
+        // Prepare data for position chart (positionCounts already calculated earlier)
         const positionLabels = Object.keys(positionCounts);
         const positionData = Object.values(positionCounts);
 
@@ -1096,11 +1203,11 @@
                 label: "Players Traded",
                 data: positionData,
                 backgroundColor: [
-                  palette.blue1, // RB
-                  palette.blue2, // WR
-                  palette.yellow, // QB
-                  palette.orange, // TE
-                  palette.gray, // K
+                  "#ef4444", // RB - Red
+                  "#3b82f6", // WR - Blue
+                  "#9ca3af", // QB - Gray
+                  "#22c55e", // TE - Green
+                  "#a855f7", // K - Purple
                 ],
                 borderColor: "#ffffff",
                 borderWidth: 2,
