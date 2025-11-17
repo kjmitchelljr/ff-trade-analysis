@@ -233,6 +233,10 @@
           display: block;
           margin-bottom: 0.125rem;
         }
+        /* Hide empty Team 3 cells on mobile */
+        .trade-table tbody td.empty-team3 {
+          display: none;
+        }
       }
     </style>
   </head>
@@ -859,6 +863,18 @@
             traded3Cell.className =
               "px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm";
             row.appendChild(traded3Cell);
+          }
+        });
+
+        // Hide empty Team 3 cells on mobile
+        tableRows.forEach((row) => {
+          const team3Cell = row.querySelector('td[data-label="Team 3"]');
+          if (team3Cell && team3Cell.textContent.trim() === "") {
+            team3Cell.classList.add("empty-team3");
+            const nextCell = team3Cell.nextElementSibling;
+            if (nextCell && nextCell.getAttribute("data-label") === "Traded") {
+              nextCell.classList.add("empty-team3");
+            }
           }
         });
 
